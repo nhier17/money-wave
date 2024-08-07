@@ -1,5 +1,6 @@
 import Image from "next/image";
-import HeaderBox from '@/components/HeaderBox'
+import HeaderBox from '@/components/HeaderBox';
+import BalanceBox from '@/components/BalanceBox';
 
 const Home = () => {
   return (
@@ -12,7 +13,11 @@ const Home = () => {
         user='Guest'
         subtext="Access and manage your account and transactions efficiently."
     />
-    TotalBalanceBox
+    <BalanceBox
+     accounts={[]}
+     totalBanks={1}
+     totalCurrentBalance={1,250}
+    />
   </header>
   RecentTransactions
 </div>
