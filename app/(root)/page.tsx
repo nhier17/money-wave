@@ -1,13 +1,19 @@
 import Image from "next/image";
 
-export default function Home() {
+const Home = () => {
   return (
 <section className="home">
 <div className="home-content">
   <header className="home-header">
-    
+    HeaderBox
+    TotalBalanceBox
   </header>
+  RecentTransactions
 </div>
+RightSidebar
 </section>
   );
 }
+
+
+export default Home;
