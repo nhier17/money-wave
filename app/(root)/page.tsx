@@ -1,8 +1,10 @@
 import Image from "next/image";
 import HeaderBox from '@/components/HeaderBox';
 import BalanceBox from '@/components/BalanceBox';
+import RightSidebar from '@/components/RightSidebar';
 
 const Home = () => {
+  const user = {firstName: "Abraham", lastName: "Lincoln"}
   return (
 <section className="home">
 <div className="home-content">
@@ -21,7 +23,11 @@ const Home = () => {
   </header>
   RecentTransactions
 </div>
-RightSidebar
+<RightSidebar
+ user={user} 
+ banks={[{}, {}]}
+ transactions={[]}
+ />
 </section>
   );
 }
