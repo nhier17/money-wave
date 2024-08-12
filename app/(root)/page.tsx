@@ -2,9 +2,12 @@ import Image from "next/image";
 import HeaderBox from '@/components/HeaderBox';
 import BalanceBox from '@/components/BalanceBox';
 import RightSidebar from '@/components/RightSidebar';
+import { getLoggedInUser } from '@/lib/actions/user.actions';
 
-const Home = () => {
-  const user = {firstName: "Abraham", lastName: "Lincoln"}
+const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
+  const loggedIn = await getLoggedInUser()
+  console.log('logged',loggedIn)
+  
   return (
 <section className="home">
 <div className="home-content">
@@ -12,7 +15,7 @@ const Home = () => {
     <HeaderBox
         type="greeting"
         title="Welcome"
-        user='Guest'
+        user={loggedIn?.name}
         subtext="Access and manage your account and transactions efficiently."
     />
     <BalanceBox
@@ -24,7 +27,7 @@ const Home = () => {
   RecentTransactions
 </div>
 <RightSidebar
- user={user} 
+ user={loggedIn} 
  banks={[{}, {}]}
  transactions={[]}
  />
