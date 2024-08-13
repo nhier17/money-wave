@@ -6,7 +6,7 @@ import { countTransactionCategories } from '@/lib/utils'
 
 
 const RightSidebar = ({ user, transactions, banks }: RightSidebarProps) => {
-  console.log('Right Sidebar', user)
+
   const categories: CategoryCount[] = countTransactionCategories(transactions);
 
   return (
