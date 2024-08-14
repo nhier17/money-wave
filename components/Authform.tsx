@@ -13,7 +13,8 @@ import {
   FormField,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import CustomInput from './CustomInput';
+import CustomInput, { FormFieldType  } from './CustomInput';
+import "react-datepicker/dist/react-datepicker.css";
 import { authFormSchema } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
@@ -46,7 +47,20 @@ const AuthForm = ({ type }: { type: string }) => {
         // Sign up with Appwrite & create plaid token
         
         if(type === 'sign-up') {
-          const newUser = await signUp(data);
+          const userData = {
+            firstName: data.firstName!,
+            lastName: data.lastName!,
+            address1: data.address1!,
+            city: data.city!,
+            state: data.state!,
+            postalCode: data.postalCode!,
+            dateOfBirth: data.dateOfBirth!,
+            ssn: data.ssn!,
+            email: data.email,
+            password: data.password
+          }
+
+          const newUser = await signUp(userData);
 
           setUser(newUser);
         }
@@ -108,25 +122,29 @@ const AuthForm = ({ type }: { type: string }) => {
                 <>
                   <div className="flex gap-4">
                     <CustomInput
+                    fieldType={FormFieldType.INPUT}
                      control={form.control}
                       name='firstName' 
                       label="First Name"
                       placeholder='Enter your first name'
                         />
                     <CustomInput
-                     control={form.control}
+                    fieldType={FormFieldType.INPUT}
+                    control={form.control}
                     name='lastName'
                      label="Last Name"
                      placeholder='Enter your first name'
                          />
                   </div>
                   <CustomInput
+                  fieldType={FormFieldType.INPUT}
                    control={form.control}
                     name='address1'
                      label="Address"
                       placeholder='Enter your specific address'
                        />
                   <CustomInput
+                  fieldType={FormFieldType.INPUT}
                    control={form.control}
                     name='city'
                     label="City"
@@ -134,12 +152,14 @@ const AuthForm = ({ type }: { type: string }) => {
                        />
                   <div className="flex gap-4">
                     <CustomInput
+                    fieldType={FormFieldType.INPUT}
                      control={form.control}
                      name='state'
                       label="State"
                        placeholder='Example: NY'
                          />
                     <CustomInput
+                    fieldType={FormFieldType.INPUT}
                      control={form.control}
                      name='postalCode'
                      label="Postal Code"
@@ -148,12 +168,14 @@ const AuthForm = ({ type }: { type: string }) => {
                   </div>
                   <div className="flex gap-4">
                     <CustomInput
+                    fieldType={FormFieldType.DATE_PICKER}
                      control={form.control}
                      name='dateOfBirth'
                      label="Date of Birth"
-                     placeholder='YYYY-MM-DD'
+                     dateFormat="MM/dd/yyyy"
                       />
                     <CustomInput
+                    fieldType={FormFieldType.INPUT}
                      control={form.control}
                      name='ssn'
                      label="SSN"
@@ -164,6 +186,7 @@ const AuthForm = ({ type }: { type: string }) => {
               )}
 
               <CustomInput
+              fieldType={FormFieldType.INPUT}
                control={form.control}
                name='email'
                label="Email"
@@ -171,6 +194,7 @@ const AuthForm = ({ type }: { type: string }) => {
                 />
 
               <CustomInput
+              fieldType={FormFieldType.INPUT}
                control={form.control}
                name='password'
                label="Password"
