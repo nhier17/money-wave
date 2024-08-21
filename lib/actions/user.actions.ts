@@ -276,7 +276,7 @@ try {
 }
 }
 
-export const getTransactionsByBankId = async ({ accountId }: getBankByAccountIdProps) => {
+export const  getBankByAccountId = async ({ accountId }: getBankByAccountIdProps) => {
 try {
   const { database } = await createAdminClient();
 
