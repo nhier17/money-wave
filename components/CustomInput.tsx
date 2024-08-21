@@ -51,7 +51,13 @@ const RenderField = ({ field,props}: {field: any; props: CustomInput }) => {
             <FormControl>
           <ReactDatePicker
             selected={field.value}
-            onChange={(date: Date) => field.onChange(date)}
+            onChange={(date: Date | null) => {
+              if (date) {
+                field.onChange(date.toISOString()); 
+              } else {
+                field.onChange('');
+              }
+            }}
             dateFormat={props.dateFormat ?? "MM/dd/yyyy"}
             wrapperClassName="date-picker"
           />

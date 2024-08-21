@@ -203,7 +203,11 @@ export const authFormSchema = (type: string) => z.object({
   city: type === 'sign-in' ? z.string().optional() : z.string().max(50),
   state: type === 'sign-in' ? z.string().optional() : z.string().min(2).max(2),
   postalCode: type === 'sign-in' ? z.string().optional() : z.string().min(3).max(6),
-  dateOfBirth: type === 'sign-in' ? z.coerce.date() : z.coerce.date(),
+  dateOfBirth: type === 'sign-up' ? z.string().refine((date) => {
+    return !isNaN(Date.parse(date));  // Check if the date is valid
+  }, {
+    message: "Invalid date",
+  }) : z.string().optional(),
   ssn: type === 'sign-in' ? z.string().optional() : z.string().min(3),
   // both
   email: z.string().email(),

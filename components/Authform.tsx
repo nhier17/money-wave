@@ -80,6 +80,7 @@ const AuthForm = ({ type }: { type: string }) => {
       }
     }
 
+    console.log("Form Errors:", form.formState.errors);
   return (
     <section className="auth-form">
       <header className='flex flex-col gap-5 md:gap-8'>
