@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import {
   Form,
-  FormField,
+  FormField
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import CustomInput, { FormFieldType  } from './CustomInput';
@@ -80,7 +80,6 @@ const AuthForm = ({ type }: { type: string }) => {
       }
     }
 
-    console.log("Form Errors:", form.formState.errors);
   return (
     <section className="auth-form">
       <header className='flex flex-col gap-5 md:gap-8'>
